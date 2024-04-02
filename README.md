@@ -24,9 +24,34 @@
 
 ## 选择apt镜像源 推荐USTC
 
+<https://mirrors.ustc.edu.cn/help/ubuntu.html>
+
+```shell
+tmp="`cat /etc/apt/sources.list | grep \"https://mirrors.ustc.edu.cn/debian\"`"
+echo $tmp
+if [ -z "$tmp" ];then
+ sudo apt install apt-transport-https -y
+ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bk
+ sudo sed -i 's|http://deb.debian.org|https://mirrors.ustc.edu.cn|g' /etc/apt/sources.list
+ sudo sed -i 's|http://security.debian.org/debian-security|http://mirrors.ustc.edu.cn/debian-security|g' /etc/apt/sources.list
+ sudo apt-get update
+ sudo apt-get upgrade -y
+fi
+```
+
 ## 更新
 
+```shell
+sudo apt update && sudo apt full-upgrade -y
+```
+
 ## 设置语言、输入法
+
+语言支持->添加或删除语言->选择中文添加
+
+重启电脑（需要重启才能选择智能拼音）
+
+设置->键盘->输入源->中文（智能拼音）（可以配置各种输入模式，我推荐小鹤双拼）
 
 ## 安装必要软件
 
@@ -46,7 +71,7 @@ curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmo
 # echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ jammy main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list
 # Install
-sudo apt-get update && sudo apt-get install cloudflare-warp
+sudo apt-get update && sudo apt-get install -y cloudflare-warp
 ```
 
 ### edge

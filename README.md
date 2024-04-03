@@ -84,6 +84,14 @@ sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/e
 sudo apt install -y microsoft-edge-stable
 ```
 
+### appimagelauncher
+
+```shell
+cd ~/Downloads
+wget https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher_2.2.0-gha111.d9d4c73+bionic_amd64.deb
+sudo dpkg -i appimagelauncher_2.2.0-gha111.d9d4c73+bionic_amd64.deb
+```
+
 ### oh my bash
 
 ```shell
